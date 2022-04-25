@@ -2,6 +2,7 @@
 // Moving only occurs with data types that use heap storage
 // Stack stroage data types do not follow the concept of wonership
 
+
 fn main() {
     let s1: String = String::from("TestString!");
     // The Value will be moved from s1 to s2 and s1 would be dropped
@@ -37,9 +38,13 @@ fn main() {
 
 
     // Function returning info as a tuple
-    let (x, len) = gen_string_info(s2);
+    // let (x, len) = gen_string_info(s2);
 
-    println!("{} has a length of {}",x,len);
+    // println!("{} has a length of {}",x,len);
+    println!("{} length from reference", gen_string_info_via_ref(&s2));
+    add_a(&mut s2);
+    println!("{}",s2);
+    loop_thru_string(&s2);
 
 }
 
@@ -56,5 +61,25 @@ fn gen_string_info(x:String) -> (String, usize){
     let length = x.len();
     return (x, length)
 }
+
+fn gen_string_info_via_ref(x: &String) -> usize{
+    return x.len();
+}
+
+fn add_a(st : &mut String){
+    st.push_str("A")
+}
+
+fn loop_thru_string(st : &String){
+    let bytes = st.as_bytes();
+    for (i, &item) in bytes.iter().enumerate(){
+        println!("{} at {}", String::from_utf8_lossy(&[item]), i);
+    }
+}
+
+/*
+ * At any given time, you can have either one mutable reference or any number of immutable references.
+ * References must always be valid.
+ */
 
 
