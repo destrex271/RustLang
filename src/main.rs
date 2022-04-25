@@ -36,17 +36,25 @@ fn main() {
     println!("{}",s2);
 
 
+    // Function returning info as a tuple
+    let (x, len) = gen_string_info(s2);
+
+    println!("{} has a length of {}",x,len);
+
 }
 
 
-fn get_ownership(x:String){
-    println!("{}",x);
-}
+// fn get_ownership(x:String){
+//     println!("{}",x);
+// }
 
 fn get_return_ownership(x:String) -> String{
     return x;
 }
 
-
+fn gen_string_info(x:String) -> (String, usize){
+    let length = x.len();
+    return (x, length)
+}
 
 
