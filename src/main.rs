@@ -1,3 +1,7 @@
+
+// Moving only occurs with data types that use heap storage
+// Stack stroage data types do not follow the concept of wonership
+
 fn main() {
     let s1: String = String::from("TestString!");
     // The Value will be moved from s1 to s2 and s1 would be dropped
@@ -24,4 +28,5 @@ fn main() {
     for our system
     VISUAL INDICATOR that something different is going on. 
     */
+
 }
