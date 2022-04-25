@@ -5,7 +5,7 @@
 fn main() {
     let s1: String = String::from("TestString!");
     // The Value will be moved from s1 to s2 and s1 would be dropped
-    let s2: String = s1; // s2 borrowed the value of s1 and s1 was dropped out of scope to prevent double free error
+    let mut s2: String = s1; // s2 borrowed the value of s1 and s1 was dropped out of scope to prevent double free error
     /*
     double free error occurs when two variables pointing to the same memory location are dropped off from their scope
     this leads to the system freeing the same memory location twice in a row which might lead to memory corruption
@@ -29,4 +29,24 @@ fn main() {
     VISUAL INDICATOR that something different is going on. 
     */
 
+    // get_ownership(s2); passing ownership to function
+    s2 = get_return_ownership(s2); // Passes ownershp to function and then return s it back to s2
+    // println!("{}",s2) <= Throws the borrow error as ownership was passed to the function
+    // let s2: String = String::from("Akshat");
+    println!("{}",s2);
+
+
 }
+
+
+fn get_ownership(x:String){
+    println!("{}",x);
+}
+
+fn get_return_ownership(x:String) -> String{
+    return x;
+}
+
+
+
+
